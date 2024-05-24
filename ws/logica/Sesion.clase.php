@@ -3,32 +3,32 @@
 require_once '../datos/Conexion.clase.php';
 
 class Sesion extends Conexion {
-    private $email;
-    private $clave;
+    private $username;
+    private $password;
 
-    function getClave() {
-        return $this->clave;
+    function getPassword() {
+        return $this->password;
     }
 
-    function setClave($clave) {
-        $this->clave = $clave;
+    function setPassword($password) {
+        $this->password = $password;
     }
-    function getEmail() {
-        return $this->email;
+    function getUsername() {
+        return $this->username;
     }
 
-    function setEmail($email) {
-        $this->email = $email;
+    function setUsername($username) {
+        $this->username = $username;
     }
     
     public function validarSesion() {
         try {
-            $sql = "select * from f_validar_cliente(:p_email, md5(:p_clave))";
+            $sql = "select * from f_user_login(:p_username, md5(:p_password))";
             
             $sentencia = $this->dblink->prepare($sql);
             //$sentencia->bindParam(":p_usuario", $this->getUsuario());
             //$sentencia->bindParam(":p_clave", $this->getClave());
-            $sentencia->execute(array(":p_email"=> $this->getEmail(), ":p_clave"=> $this->getClave()));
+            $sentencia->execute(array(":p_username"=> $this->getUsername(), ":p_password"=> $this->getPassword()));
             return $sentencia->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $exc) {

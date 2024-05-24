@@ -3,23 +3,23 @@
 require_once '../logica/Sesion.clase.php';
 require_once '../util/funciones/Funciones.clase.php';
 
-if (! isset($_POST["email"]) || ! isset($_POST["clave"])){
+if (! isset($_POST["username"]) || ! isset($_POST["password"])){
     Funciones::imprimeJSON("Falta completar los datos requeridos");
     exit();
 }
 
-$email = $_POST["email"];
-$clave = $_POST["clave"];
+$username = $_POST["username"];
+$password = $_POST["password"];
 
 
 try {
     $objSesion = new Sesion();
-    $objSesion->setEmail($email);
-    $objSesion->setClave($clave);
+    $objSesion->setUsername($username);
+    $objSesion->setPassword($password);
     $resultado = $objSesion->validarSesion();
 
     
-    if ($resultado["estado"] == "200"){
+    if ($resultado["userstate"] == "activo"){
         //unset( $resultado["estado"] );
         
         /*Generar un token de seguridad*/
