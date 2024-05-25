@@ -5,7 +5,7 @@ require_once 'json.hpack.php';
 class Funciones {
     
     //public static $DIRECCION_WEB_SERVICE = "https://comercial-ws-20162-hmera.herokuapp.com/webservice/";
-    public static $DIRECCION_WEB_SERVICE = "https://dmela.herokuapp.com";
+    public static $DIRECCION_WEB_SERVICE = "https://ravelskullapp-production.up.railway.app/";
 
     public static function mensaje($mensaje, $tipo, $archivoDestino="", $tiempo=0) {
         $estiloMensaje = "";
