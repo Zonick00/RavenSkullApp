@@ -5,7 +5,7 @@ require_once '../util/funciones/Funciones.clase.php';
 require_once './token.validar.php';
 
 $name = $_POST['name'];
-$image = $_POST['image'];
+$image = $_FILES['image'];
     
     $decodeImage = base64_decode($image); 
-    file_put_contents('../fotos/'.$name.'.jpg' , $decodeImage);
+    file_put_contents('../image/'.$name.'.jpg' , $decodeImage);
