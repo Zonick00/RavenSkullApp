@@ -24,7 +24,7 @@ $archivo = $_FILES['archivo']['name'];
          print_r($_FILES['archivo']);
          echo "</pre>";
          $ruta=$_SERVER['DOCUMENT_ROOT'].'/image/'.$archivo;
-         chmod('../image', 0777);
+         
         //Si la imagen es correcta en tamaño y tipo
         //Se intenta subir al servidor
         if (move_uploaded_file($temp, $ruta)) {
@@ -38,6 +38,8 @@ $archivo = $_FILES['archivo']['name'];
         else {
            //Si no se ha podido subir la imagen, mostramos un mensaje de error
            echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
+           
+           echo "/image/WhatsApp Image 2024-05-11 at 1.27.14 PM.jpeg";
         }
       }
    }
