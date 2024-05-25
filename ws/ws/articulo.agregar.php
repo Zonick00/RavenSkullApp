@@ -20,6 +20,9 @@ $archivo = $_FILES['archivo']['name'];
         - Se permiten archivos .gif, .jpg, .png. y de 200 kb como máximo.</b></div>';
      }
      else {
+         echo "<pre>";
+         print_r($_FILES['archivo']);
+         echo "</pre>";
         //Si la imagen es correcta en tamaño y tipo
         //Se intenta subir al servidor
         if (move_uploaded_file($temp, '/image/'.$archivo)) {
