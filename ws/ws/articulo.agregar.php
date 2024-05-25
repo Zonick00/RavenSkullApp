@@ -7,5 +7,4 @@ require_once './token.validar.php';
 $name = $_POST['name'];
 $image = $_FILES['image'];
     
-    $decodeImage = base64_decode($image); 
-    file_put_contents('../image/'.$name.'.jpg' , $decodeImage);
+    file_put_contents('../image/'.$name.'.jpg' , $image);
