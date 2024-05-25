@@ -10,6 +10,6 @@ if (! isset($_POST["image"])){
 }
 
 $image = $_POST["image"];
-$folder = '../image/'.$image;
+$folder = '../image/'.$image.'.jpg';
 
 Funciones::cargarArchivo($image, $folder);
