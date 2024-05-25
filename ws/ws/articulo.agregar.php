@@ -23,9 +23,11 @@ $archivo = $_FILES['archivo']['name'];
          echo "<pre>";
          print_r($_FILES['archivo']);
          echo "</pre>";
+         $ruta=$_SERVER['DOCUMENT_ROOT'].'/image/'.$archivo;
+         chmod($_SERVER['DOCUMENT_ROOT'].'/image', 0777);
         //Si la imagen es correcta en tamaño y tipo
         //Se intenta subir al servidor
-        if (move_uploaded_file($temp, $_SERVER['DOCUMENT_ROOT'].'/image/'.$archivo)) {
+        if (move_uploaded_file($temp, $ruta)) {
             //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
             chmod('/image/'.$archivo, 0777);
             //Mostramos el mensaje de que se ha subido co éxito
