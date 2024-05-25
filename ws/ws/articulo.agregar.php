@@ -39,7 +39,7 @@ $archivo = $_FILES['archivo']['name'];
            //Si no se ha podido subir la imagen, mostramos un mensaje de error
            echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
            
-           echo "/image/WhatsApp Image 2024-05-11 at 1.27.14 PM.jpeg";
+           echo '<p><img src="/image/WhatsApp Image 2024-05-11 at 1.27.14 PM.jpeg"></p>';
         }
       }
    }
