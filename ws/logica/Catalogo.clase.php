@@ -1,6 +1,7 @@
 <?php
 
 require_once '../datos/Conexion.clase.php';
+$permissions = 'drwxr-xr-x';  // or whatever
 
 class Catalogo extends Conexion{
     
