@@ -22,13 +22,13 @@ $archivo = $_FILES['archivo']['name'];
      else {
         //Si la imagen es correcta en tamaño y tipo
         //Se intenta subir al servidor
-        if (move_uploaded_file($temp, 'image/'.$archivo)) {
+        if (move_uploaded_file($temp, '/image/'.$archivo)) {
             //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-            chmod('image/'.$archivo, 0777);
+            chmod('/image/'.$archivo, 0777);
             //Mostramos el mensaje de que se ha subido co éxito
             echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
             //Mostramos la imagen subida
-            echo '<p><img src="images/'.$archivo.'"></p>';
+            echo '<p><img src="/images/'.$archivo.'"></p>';
         }
         else {
            //Si no se ha podido subir la imagen, mostramos un mensaje de error
