@@ -23,7 +23,7 @@ $archivo = $_FILES['archivo']['name'];
          echo "<pre>";
          print_r($_FILES['archivo']);
          echo "</pre>";
-         $ruta=$_SERVER['DOCUMENT_ROOT'].'/image/'.$archivo;
+         $ruta=$_SERVER['DOCUMENT_ROOT'].'/images/'.$archivo;
          
         //Si la imagen es correcta en tamaño y tipo
         //Se intenta subir al servidor
@@ -33,7 +33,7 @@ $archivo = $_FILES['archivo']['name'];
             //Mostramos el mensaje de que se ha subido co éxito
             echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
             //Mostramos la imagen subida
-            echo '<p><img src="/images/'.$archivo.'"></p>';
+            echo '<p><img src="app/images/'.$archivo.'"></p>';
         }
         else {
            //Si no se ha podido subir la imagen, mostramos un mensaje de error
