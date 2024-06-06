@@ -125,24 +125,6 @@ class Funciones {
         }        
     }
 
-    public static function generaPDF($file='', $html='', $paper='a4', $format, $download=false) {
-        require_once '../dompdf/dompdf_config.inc.php';
-        try{
-            $dompdf = new DOMPDF();
-            $dompdf->set_paper($paper, $format);
-            $dompdf->load_html($html);
-            ini_set("memory_limit","32M");
-            $dompdf->render();
-            file_put_contents($file, $dompdf->output());        
-
-            if ($download){
-                $dompdf->stream($file);
-            }
-        }catch(Exception $exc){
-            echo "Error: ".$exc->getMessage();
-        }
-    }
-
     public static function limpiarString($string){
         $string = trim($string);
 
