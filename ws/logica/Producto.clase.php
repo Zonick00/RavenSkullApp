@@ -4,18 +4,20 @@ require_once '../datos/Conexion.clase.php';
 
 class Producto extends Conexion{
     
-    public function registrarProducto($p_email, $p_clave, $p_nombres, $p_apellidos, $p_direccion, $p_telefono, $p_fecha_nac, $p_sexo) {
+    public function registrarProducto($p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category) {
+        
         try {
-            $sql = "select * from f_registrar_usuario(:p_email, md5(:p_clave), :p_nombres, :p_apellidos, :p_direccion, :p_telefono, :p_fecha_nac, :p_sexo)";
+            $sql = "INSERT INTO public.products
+                    (product_name, product_price, product_wholesale, product_sold, product_stock, product_image, category_id)
+                    VALUES (:p_name, :p_price, :p_wholesale, :p_sold, :p_stock, :p_image, :p_category)";
             $sentencia = $this->dblink->prepare($sql);
-            $sentencia->execute(array(":p_email"=> $p_email, 
-                                      ":p_clave"=> $p_clave, 
-                                      ":p_nombres"=> $p_nombres,
-                                      ":p_apellidos"=> $p_apellidos,
-                                      ":p_direccion"=> $p_direccion,
-                                      ":p_telefono"=> $p_telefono,
-                                      ":p_fecha_nac"=> $p_fecha_nac,
-                                      ":p_sexo"=> $p_sexo));
+            $sentencia->execute(array(":p_name"=> $p_name, 
+                                      ":p_price"=> $p_price, 
+                                      ":p_wholesale"=> $p_wholesale,
+                                      ":p_sold"=> $p_sold,
+                                      ":p_stock"=> $p_stock,
+                                      ":p_image"=> $p_image,
+                                      ":p_category"=> $p_category));
             return $sentencia->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $exc) {
