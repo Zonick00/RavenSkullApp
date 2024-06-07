@@ -13,7 +13,7 @@ try {
         //si devuelve true, quiere decir q el token es valido
         $objProducto = new Producto();
         
-        $resultado = $objProducto->ObtenerProductos();
+        $resultado = $objProducto->listarProductos();
         
         Funciones::imprimeArrayJSON(200, "", $resultado);
     }                                           

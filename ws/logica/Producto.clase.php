@@ -25,11 +25,23 @@ class Producto extends Conexion{
         }
     }
     
-    public function ObtenerProductos() {
+    public function listarProductos() {
         try {
             $sql = "select * from products order by 1";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute();
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
+    
+    public function buscarProducto($p_productoId) {
+        try {
+            $sql = "select * from products where product_id= :p_productoId";
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute(array(":p_productoId"=> $p_productoId));
             return $sentencia->fetchAll(PDO::FETCH_ASSOC);
             
         } catch (Exception $exc) {
