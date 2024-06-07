@@ -24,5 +24,17 @@ class Producto extends Conexion{
             throw $exc;
         }
     }
+    
+    public function ObtenerProductos() {
+        try {
+            $sql = "select * from products order by 1";
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute();
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
    
 }

@@ -28,7 +28,7 @@ try {
         
         $resultado = $objProducto->registrarProducto($p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category);
         
-        Funciones::imprimeArrayJSON(200, "", $resultado);
+        Funciones::imprimeArrayJSON(200, "Producto agregado con éxito", $resultado);
     }                                           
 } catch (Exception $exc) {
     Funciones::imprimeArrayJSON(500,$exc->getMessage(),"");
