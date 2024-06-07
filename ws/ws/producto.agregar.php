@@ -3,8 +3,8 @@ require_once '../logica/Producto.clase.php';
 require_once '../util/funciones/Funciones.clase.php';
 require_once './token.validar.php';
 
-if (! isset($_POST["p_name"]) || ! isset($_POST["p_price"]) || ! isset($_POST["p_wholesale"]) || ! isset($_POST["p_sold"]) || ! isset($_POST["p_stock"]) || ! isset($_POST["p_image"]) || ! isset($_POST["p_category"])){
-    Funciones::imprimeJSON("Falta completar los datos requeridos");
+if (! isset($_POST["token"]) || ! isset($_POST["p_name"]) || ! isset($_POST["p_price"]) || ! isset($_POST["p_wholesale"]) || ! isset($_POST["p_sold"]) || ! isset($_POST["p_stock"]) || ! isset($_POST["p_image"]) || ! isset($_POST["p_category"])){
+    Funciones::imprimeJSON(500,"Falta completar los datos requeridos", "");
     exit();
 }
 
@@ -26,7 +26,7 @@ try {
         $p_image = $_POST["p_image"];
         $p_category = $_POST["p_category"];
         
-        $resultado = $objCatalogo->ObtenerItem();
+        $resultado = $objProducto->registrarProducto($p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category);
         
         Funciones::imprimeJSON(200, "", $resultado);
     }                                           
