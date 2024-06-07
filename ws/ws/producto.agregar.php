@@ -4,12 +4,12 @@ require_once '../util/funciones/Funciones.clase.php';
 require_once './token.validar.php';
 
 if (! isset($_POST["token"]) || ! isset($_POST["p_name"]) || ! isset($_POST["p_price"]) || ! isset($_POST["p_wholesale"]) || ! isset($_POST["p_sold"]) || ! isset($_POST["p_stock"]) || ! isset($_POST["p_image"]) || ! isset($_POST["p_category"])){
-    Funciones::imprimeJSON(500,"Falta completar los datos requeridos", "");
+    Funciones::imprimeArrayJSON(500,"Falta completar los datos requeridos", "");
     exit();
 }
 
 if (! isset($_POST["token"])){
-    Funciones::imprimeJSON(500, "Debe especificar un token", "");
+    Funciones::imprimeArrayJSON(500, "Debe especificar un token", "");
     exit();
 }
     
@@ -28,8 +28,8 @@ try {
         
         $resultado = $objProducto->registrarProducto($p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category);
         
-        Funciones::imprimeJSON(200, "", $resultado);
+        Funciones::imprimeArrayJSON(200, "", $resultado);
     }                                           
 } catch (Exception $exc) {
-    Funciones::imprimeJSON(500,$exc->getMessage(),"");
+    Funciones::imprimeArrayJSON(500,$exc->getMessage(),"");
 }
