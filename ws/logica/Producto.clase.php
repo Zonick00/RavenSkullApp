@@ -59,8 +59,7 @@ class Producto extends Conexion{
                         product_stock=:p_stock, 
                         product_image=:p_image, 
                         category_id=:p_category
-                    WHERE product_id = :p_productoId;
-                    select * from public.products WHERE product_id = :p_productoId";
+                    WHERE product_id = :p_productoId";
                     
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute(array(":p_name"=> $p_name, 
