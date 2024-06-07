@@ -3,7 +3,7 @@ require_once '../logica/Producto.clase.php';
 require_once '../util/funciones/Funciones.clase.php';
 require_once './token.validar.php';
 
-if (! isset($_POST["token"]) || ! isset($_POST["p_name"]) || ! isset($_POST["p_price"]) || ! isset($_POST["p_wholesale"]) || ! isset($_POST["p_sold"]) || ! isset($_POST["p_stock"]) || ! isset($_POST["p_image"]) || ! isset($_POST["p_category"])){
+if (! isset($_POST["p_name"]) || ! isset($_POST["p_price"]) || ! isset($_POST["p_wholesale"]) || ! isset($_POST["p_sold"]) || ! isset($_POST["p_stock"]) || ! isset($_POST["p_image"]) || ! isset($_POST["p_category"])){
     Funciones::imprimeArrayJSON(500,"Falta completar los datos requeridos", "");
     exit();
 }
