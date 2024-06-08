@@ -26,7 +26,7 @@ try {
         
         $resultado = $objCliente->actualizarCliente($p_customerId, $p_name, $p_lastname, $p_dni, $p_address);
         
-        Funciones::imprimeArrayJSON(200, "Producto actualizado con éxito", $resultado);
+        Funciones::imprimeArrayJSON(200, "Cliente actualizado con éxito", $resultado);
     }                                           
 } catch (Exception $exc) {
     Funciones::imprimeArrayJSON(500,$exc->getMessage(),"");
