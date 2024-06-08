@@ -26,7 +26,7 @@ try {
         
         $resultado = $objCliente->registrarCliente($p_name, $p_lastname, $p_dni ,$p_address);
         
-        Funciones::imprimeArrayJSON(200, "Producto agregado con éxito", $resultado);
+        Funciones::imprimeArrayJSON(200, "Cliente agregado con éxito", $resultado);
     }                                           
 } catch (Exception $exc) {
     Funciones::imprimeArrayJSON(500,$exc->getMessage(),"");
