@@ -1,10 +1,10 @@
 <?php
-require_once '../logica/Producto.clase.php';
+require_once '../logica/Cliente.clase.php';
 require_once '../util/funciones/Funciones.clase.php';
 require_once './token.validar.php';
 
-if (! isset($_POST["p_productoId"])){
-    Funciones::imprimeArrayJSON(500,"Debe especificar un id de producto válido", "");
+if (! isset($_POST["p_customerId"])){
+    Funciones::imprimeArrayJSON(500,"Debe especificar un id de cliente válido", "");
     exit();
 }
 
@@ -16,13 +16,13 @@ if (! isset($_POST["token"])){
 try {
     if(validarToken($_POST["token"])){
         //si devuelve true, quiere decir q el token es valido
-        $objProducto = new Producto();
+        $objCliente = new Cliente();
         
-        $p_productoId = $_POST["p_productoId"];
+        $p_customerId = $_POST["p_customerId"];
         
-        $resultado = $objProducto->buscarProducto($p_productoId);
+        $resultado = $objCliente->buscarCliente($p_customerId);
         
-        Funciones::imprimeArrayJSON(200, "Producto encontrado", $resultado);
+        Funciones::imprimeArrayJSON(200, "Cliente encontrado", $resultado);
     }                                           
 } catch (Exception $exc) {
     Funciones::imprimeArrayJSON(500,$exc->getMessage(),"");
