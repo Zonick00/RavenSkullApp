@@ -76,5 +76,21 @@ class Producto extends Conexion{
             throw $exc;
         }
     }
+    
+    public function actualizarStock($p_productoId, $p_stock) {
+        try{
+            $sql = "UPDATE public.products
+                    SET product_stock=:p_stock
+                    WHERE product_id=:p_productoId";
+                    
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute(array(":p_stock"=> $p_stock,
+                                      ":p_productoId"=> $p_productoId));
+            return $sentencia->fetch(PDO::FETCH_ASSOC);
+            
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
    
 }
