@@ -80,7 +80,7 @@ class Producto extends Conexion{
     public function actualizarStock($p_productoId, $p_stock) {
         try{
             $sql = "UPDATE public.products
-                    SET product_stock=:p_stock
+                    SET product_stock=product_stock+:p_stock
                     WHERE product_id=:p_productoId";
                     
             $sentencia = $this->dblink->prepare($sql);
