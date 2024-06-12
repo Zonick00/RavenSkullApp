@@ -20,12 +20,12 @@ try {
         
         $p_name = $_POST["p_name"];
         $p_stock = $_POST["p_stock"];
-        $p_priceBuy = $_POST["p_priceBuy"];
-        $p_addressBuy = $_POST["p_addressBuy"];
-        $p_phoneBuy = $_POST["p_phoneBuy"];
+        $p_price = $_POST["p_price"];
+        $p_address = $_POST["p_address"];
+        $p_phone = $_POST["p_phone"];
         $p_suppliesId = $_POST["p_suppliesId"];
         
-        $resultado = $objInsumo->actualizarInsumo($p_name, $p_stock, $p_priceBuy, $p_addressBuy, $p_phoneBuy, $p_suppliesId);
+        $resultado = $objInsumo->actualizarInsumo($p_name, $p_stock, $p_price, $p_address, $p_phone, $p_suppliesId);
         
         Funciones::imprimeArrayJSON(200, "Insumo actualizado con éxito", $resultado);
     }                                           
