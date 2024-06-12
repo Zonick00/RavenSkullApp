@@ -8,7 +8,7 @@ class Insumo extends Conexion{
         
         try {
             $sql = "INSERT INTO public.supplies(supplies_name, supplies_stock, supplies_price, supplies_address, supplies_phone)
-                    VALUES (:p_name, :p_stock, :p_priceBuy, :p_addressBuy, :p_phoneBuy);";
+                    VALUES (:p_name, :p_stock, :p_price, :p_address, :p_phone);";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute(array(":p_name"=> $p_name, 
                                       ":p_stock"=> $p_stock, 
