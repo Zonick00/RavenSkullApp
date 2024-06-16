@@ -46,7 +46,7 @@ class Categoria extends Conexion{
         try{
             $sql = "UPDATE public.categories
                     SET 
-                        category_name=:p_name, 
+                        category_name=:p_name 
                     WHERE category_id=:p_categoryId;";
                     
             $sentencia = $this->dblink->prepare($sql);
