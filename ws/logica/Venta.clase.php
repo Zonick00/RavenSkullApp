@@ -39,12 +39,12 @@ class Venta extends Conexion{
         }
     }
     
-    public function cambiarEstadoVenta($p_state, $p_ordeId) {
+    public function cambiarEstadoVenta($p_state, $p_orderId) {
         try {
-            $sql = "UPDATE orders SET order_state = :p_state WHERE order_id = p_orderId";
+            $sql = "UPDATE orders SET order_state = :p_state WHERE order_id = :p_orderId";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute(array(":p_state"=> $p_state,
-                                      ":p_orderId"=> $p_ordeId));
+                                      ":p_orderId"=> $p_orderId));
             return $sentencia->fetchAll(PDO::FETCH_ASSOC);
             
         } catch (Exception $exc) {
