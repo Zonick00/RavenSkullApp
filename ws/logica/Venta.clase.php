@@ -52,4 +52,31 @@ class Venta extends Conexion{
         }
     }
     
+    public function registrarVenta($p_datetime, $p_shipping, $p_shipping_cost, $p_order_address, $p_discount, $p_customerId, $p_userId, $det_ped) {
+        try {
+            $sql = "SELECT f_registrar_pedido(
+                    :p_datetime, 
+                    :p_shipping, 
+                    :p_shipping_cost, 
+                    :p_order_address, 
+                    :p_discount, 
+                    :p_customerId, 
+                    :p_userId, 
+                    :det_ped)";
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute(array(":p_datetime"=> $p_datetime,
+                                      ":p_shipping"=> $p_shipping,
+                                      ":p_shipping_cost"=> $p_shipping_cost,
+                                      ":p_order_address"=> $p_order_address,
+                                      ":p_discount"=> $p_discount,
+                                      ":p_customerId"=> $p_customerId,
+                                      ":p_userId"=> $p_userId,
+                                      ":det_ped"=> $det_ped));
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
+    
 }
