@@ -38,4 +38,18 @@ class Venta extends Conexion{
             throw $exc;
         }
     }
+    
+    public function cambiarEstadoVenta($p_state, $p_ordeId) {
+        try {
+            $sql = "UPDATE orders SET order_state = :p_state WHERE order_id = p_orderId";
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute(array(":p_state"=> $p_state,
+                                      ":p_orderId"=> $p_ordeId));
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
+    
 }
