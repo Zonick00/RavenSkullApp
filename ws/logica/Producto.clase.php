@@ -4,12 +4,12 @@ require_once '../datos/Conexion.clase.php';
 
 class Producto extends Conexion{
     
-    public function registrarProducto($p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category) {
+    public function registrarProducto($p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category, $p_description) {
         
         try {
             $sql = "INSERT INTO public.products
-                    (product_name, product_price, product_wholesale, product_sold, product_stock, product_image, category_id)
-                    VALUES (:p_name, :p_price, :p_wholesale, :p_sold, :p_stock, :p_image, :p_category)";
+                    (product_name, product_price, product_wholesale, product_sold, product_stock, product_image, category_id, product_description)
+                    VALUES (:p_name, :p_price, :p_wholesale, :p_sold, :p_stock, :p_image, :p_category , :p_description)";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute(array(":p_name"=> $p_name, 
                                       ":p_price"=> $p_price, 
@@ -17,7 +17,8 @@ class Producto extends Conexion{
                                       ":p_sold"=> $p_sold,
                                       ":p_stock"=> $p_stock,
                                       ":p_image"=> $p_image,
-                                      ":p_category"=> $p_category));
+                                      ":p_category"=> $p_category,
+                                      ":p_description"=> $p_description));
             return $sentencia->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $exc) {
@@ -49,7 +50,7 @@ class Producto extends Conexion{
         }
     }
     
-    public function actualizarProducto($p_productoId, $p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category) {
+    public function actualizarProducto($p_productoId, $p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category, $p_description) {
         try{
             $sql = "UPDATE public.products
                     SET product_name=:p_name, 
@@ -58,7 +59,8 @@ class Producto extends Conexion{
                         product_sold=:p_sold, 
                         product_stock=:p_stock, 
                         product_image=:p_image, 
-                        category_id=:p_category
+                        category_id=:p_category,
+                        product_description=:p_description
                     WHERE product_id = :p_productoId";
                     
             $sentencia = $this->dblink->prepare($sql);
@@ -69,7 +71,8 @@ class Producto extends Conexion{
                                       ":p_stock"=> $p_stock,
                                       ":p_image"=> $p_image,
                                       ":p_category"=> $p_category,
-                                      ":p_productoId"=> $p_productoId));
+                                      ":p_productoId"=> $p_productoId,
+                                      ":p_description"=> $p_description));
             return $sentencia->fetch(PDO::FETCH_ASSOC);
             
         } catch (Exception $exc) {
