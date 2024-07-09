@@ -3,7 +3,7 @@ require_once '../logica/Producto.clase.php';
 require_once '../util/funciones/Funciones.clase.php';
 require_once './token.validar.php';
 
-if (! isset($_POST["p_productoId"]) || ! isset($_POST["p_name"]) || ! isset($_POST["p_price"]) || ! isset($_POST["p_wholesale"]) || ! isset($_POST["p_sold"]) || ! isset($_POST["p_stock"]) || ! isset($_POST["p_image"]) || ! isset($_POST["p_category"])){
+if (! isset($_POST["p_productoId"]) || ! isset($_POST["p_name"]) || ! isset($_POST["p_price"]) || ! isset($_POST["p_wholesale"]) || ! isset($_POST["p_sold"]) || ! isset($_POST["p_stock"]) || ! isset($_POST["p_image"]) || ! isset($_POST["p_category"]) || ! isset($_POST["p_description"])){
     Funciones::imprimeArrayJSON(500,"Falta completar los datos requeridos", "");
     exit();
 }
@@ -26,8 +26,9 @@ try {
         $p_stock = $_POST["p_stock"];
         $p_image = $_POST["p_image"];
         $p_category = $_POST["p_category"];
+        $p_description = $_POST["p_description"];
         
-        $resultado = $objProducto->actualizarProducto($p_productoId, $p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category);
+        $resultado = $objProducto->actualizarProducto($p_productoId, $p_name, $p_price, $p_wholesale, $p_sold, $p_stock, $p_image, $p_category, $p_description);
         
         Funciones::imprimeArrayJSON(200, "Producto actualizado con éxito", $resultado);
     }                                           
