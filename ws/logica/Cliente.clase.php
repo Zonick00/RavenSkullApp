@@ -4,16 +4,17 @@ require_once '../datos/Conexion.clase.php';
 
 class Cliente extends Conexion{
     
-    public function registrarCliente($p_name, $p_lastname, $p_dni, $p_address) {
+    public function registrarCliente($p_name, $p_lastname, $p_dni, $p_address, $p_phone) {
         
         try {
-            $sql = "INSERT INTO public.customers(customer_name, customer_lastname, customer_dni, customer_address)
-                    VALUES (:p_name, :p_lastname, :p_dni, :p_address);";
+            $sql = "INSERT INTO public.customers(customer_name, customer_lastname, customer_dni, customer_address, customer_phone)
+                    VALUES (:p_name, :p_lastname, :p_dni, :p_address, :p_phone);";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute(array(":p_name"=> $p_name, 
                                       ":p_lastname"=> $p_lastname, 
                                       ":p_dni"=> $p_dni,
-                                      ":p_address"=> $p_address));
+                                      ":p_address"=> $p_address,
+                                      ":p_phone"=> $p_phone));
             return $sentencia->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $exc) {
@@ -45,13 +46,14 @@ class Cliente extends Conexion{
         }
     }
     
-    public function actualizarCliente($p_customerId, $p_name, $p_lastname, $p_dni, $p_address) {
+    public function actualizarCliente($p_customerId, $p_name, $p_lastname, $p_dni, $p_address, $p_phone) {
         try{
             $sql = "UPDATE public.customers
                     SET customer_name=:p_name, 
                         customer_lastname=:p_lastname, 
                         customer_dni=:p_dni, 
-                        customer_address=:p_address
+                        customer_address=:p_address,
+                        customer_phone=:p_phone
                     WHERE customer_id=:p_customerId";
                     
             $sentencia = $this->dblink->prepare($sql);
@@ -59,7 +61,8 @@ class Cliente extends Conexion{
                                       ":p_name"=> $p_name, 
                                       ":p_lastname"=> $p_lastname, 
                                       ":p_dni"=> $p_dni,
-                                      ":p_address"=> $p_address));
+                                      ":p_address"=> $p_address,
+                                      ":p_phone"=> $p_phone));
             return $sentencia->fetch(PDO::FETCH_ASSOC);
             
         } catch (Exception $exc) {

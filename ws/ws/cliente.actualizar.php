@@ -23,8 +23,9 @@ try {
         $p_lastname = $_POST["p_lastname"];
         $p_dni = $_POST["p_dni"];
         $p_address = $_POST["p_address"];
+        $p_phone = $_POST["p_phone"];
         
-        $resultado = $objCliente->actualizarCliente($p_customerId, $p_name, $p_lastname, $p_dni, $p_address);
+        $resultado = $objCliente->actualizarCliente($p_customerId, $p_name, $p_lastname, $p_dni, $p_address, $p_phone);
         
         Funciones::imprimeArrayJSON(200, "Cliente actualizado con éxito", $resultado);
     }                                           
