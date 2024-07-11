@@ -4,17 +4,18 @@ require_once '../datos/Conexion.clase.php';
 
 class Insumo extends Conexion{
     
-    public function registrarInsumo($p_name, $p_stock, $p_price, $p_address, $p_phone) {
+    public function registrarInsumo($p_name, $p_stock, $p_price, $p_address, $p_phone, $p_provider_name) {
         
         try {
-            $sql = "INSERT INTO public.supplies(supplies_name, supplies_stock, supplies_price, supplies_address, supplies_phone)
-                    VALUES (:p_name, :p_stock, :p_price, :p_address, :p_phone);";
+            $sql = "INSERT INTO public.supplies(supplies_name, supplies_stock, supplies_price, supplies_address, supplies_phone, supplies_provider_name)
+                    VALUES (:p_name, :p_stock, :p_price, :p_address, :p_phone, :p_provider_name);";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute(array(":p_name"=> $p_name, 
                                       ":p_stock"=> $p_stock, 
                                       ":p_price"=> $p_price,
                                       ":p_address"=> $p_address,
-                                      ":p_phone"=> $p_phone));
+                                      ":p_phone"=> $p_phone,
+                                      ":p_provider_name"=> $p_provider_name));
             return $sentencia->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $exc) {
@@ -46,7 +47,7 @@ class Insumo extends Conexion{
         }
     }
     
-    public function actualizarInsumo($p_name, $p_stock, $p_price, $p_address, $p_phone, $p_suppliesId) {
+    public function actualizarInsumo($p_name, $p_stock, $p_price, $p_address, $p_phone, $p_suppliesId, $p_provider_name) {
         try{
             $sql = "UPDATE public.supplies
                     SET 
@@ -54,7 +55,8 @@ class Insumo extends Conexion{
                         supplies_stock=:p_stock, 
                         supplies_price=:p_price, 
                         supplies_address=:p_address, 
-                        supplies_phone=:p_phone
+                        supplies_phone=:p_phone,
+                        supplies_provider_name=:p_provider_name
                     WHERE supplies_id=:p_suppliesId;";
                     
             $sentencia = $this->dblink->prepare($sql);
@@ -63,7 +65,8 @@ class Insumo extends Conexion{
                                       ":p_stock"=> $p_stock, 
                                       ":p_price"=> $p_price,
                                       ":p_address"=> $p_address,
-                                      ":p_phone"=> $p_phone));
+                                      ":p_phone"=> $p_phone,
+                                      ":p_provider_name"=> $p_provider_name));
             return $sentencia->fetch(PDO::FETCH_ASSOC);
             
         } catch (Exception $exc) {
