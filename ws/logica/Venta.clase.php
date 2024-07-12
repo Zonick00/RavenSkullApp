@@ -79,4 +79,17 @@ class Venta extends Conexion{
         }
     }
     
+    public function ListarEntreFechas($p_fecha1, $p_fecha2) {
+        try {
+            $sql = "select * from orders where order_date between :p_fecha1 and :p_fecha2 order by 1 desc";
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute(array(":p_fecha1"=> $p_fecha1,
+                                      ":p_fecha2"=> $p_fecha2));
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
+    
 }
