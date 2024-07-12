@@ -5,7 +5,7 @@ class Venta extends Conexion{
     
     public function listarVentas() {
         try {
-            $sql = "select * from orders order by 1";
+            $sql = "select * from orders order by 1 desc";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute();
             return $sentencia->fetchAll(PDO::FETCH_ASSOC);
