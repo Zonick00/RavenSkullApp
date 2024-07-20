@@ -7,7 +7,7 @@ class Usuario extends Conexion{
     public function registrarUsuario($p_name, $p_lastname, $p_dni, $p_address, $p_phone, $p_username, $p_password, $p_type) {
         try {
             $sql = "INSERT INTO public.users(user_name, user_lastname, user_dni, user_address, user_phone, user_username, user_password, user_type)
-                    VALUES (:p_name, :p_lastname, :p_dni, :p_address, :p_phone, :p_username, :p_password, :p_type);";
+                    VALUES (:p_name, :p_lastname, :p_dni, :p_address, :p_phone, :p_username, md5(:p_password), :p_type);";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute(array(":p_name"=> $p_name, 
                                       ":p_lastname"=> $p_lastname, 
