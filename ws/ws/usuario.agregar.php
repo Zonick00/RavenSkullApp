@@ -26,8 +26,9 @@ try {
         $p_phone = $_POST["p_phone"];
         $p_username = $_POST["p_username"];
         $p_password = $_POST["p_password"];
+        $p_type = $_POST["p_type"];
         
-        $resultado = $objUsuario->registrarUsuario($p_name, $p_lastname, $p_dni ,$p_address, $p_phone, $p_username, $p_password);
+        $resultado = $objUsuario->registrarUsuario($p_name, $p_lastname, $p_dni ,$p_address, $p_phone, $p_username, $p_password, $p_type);
         
         Funciones::imprimeArrayJSON(200, "Usuario agregado con éxito", $resultado);
     }                                           
