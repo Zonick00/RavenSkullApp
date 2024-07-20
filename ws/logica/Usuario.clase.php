@@ -4,18 +4,18 @@ require_once '../datos/Conexion.clase.php';
 
 class Usuario extends Conexion{
     
-    public function registrarUsuario($p_email, $p_clave, $p_nombres, $p_apellidos, $p_direccion, $p_telefono, $p_fecha_nac, $p_sexo) {
+    public function registrarUsuario($p_name, $p_lastname, $p_dni, $p_address, $p_phone, $p_username, $p_password) {
         try {
-            $sql = "select * from f_registrar_usuario(:p_email, md5(:p_clave), :p_nombres, :p_apellidos, :p_direccion, :p_telefono, :p_fecha_nac, :p_sexo)";
+            $sql = "INSERT INTO public.users(user_name, user_lastname, user_dni, user_address, user_phone, user_username, user_password)
+                    VALUES (:p_name, :p_lastname, :p_dni, :p_address, :p_phone, :p_username, :p_password);";
             $sentencia = $this->dblink->prepare($sql);
-            $sentencia->execute(array(":p_email"=> $p_email, 
-                                      ":p_clave"=> $p_clave, 
-                                      ":p_nombres"=> $p_nombres,
-                                      ":p_apellidos"=> $p_apellidos,
-                                      ":p_direccion"=> $p_direccion,
-                                      ":p_telefono"=> $p_telefono,
-                                      ":p_fecha_nac"=> $p_fecha_nac,
-                                      ":p_sexo"=> $p_sexo));
+            $sentencia->execute(array(":p_name"=> $p_name, 
+                                      ":p_lastname"=> $p_lastname, 
+                                      ":p_dni"=> $p_dni,
+                                      ":p_address"=> $p_address,
+                                      ":p_phone"=> $p_phone,
+                                      ":p_username"=> $p_username,
+                                      ":p_password"=> $p_password));
             return $sentencia->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $exc) {
