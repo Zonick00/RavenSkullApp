@@ -24,4 +24,28 @@ class Usuario extends Conexion{
         }
     }
     
+    public function listarUsuarios() {
+        try {
+            $sql = "SELECT * FROM public.users ORDER BY userid ASC ";
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute();
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
+    
+        public function buscarUsuario($p_userId) {
+        try {
+            $sql = "SELECT * FROM public.users WHERE userid = :p_userId";
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute(array(":p_userId"=> $p_userId));
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
+    
 }
