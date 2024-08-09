@@ -14,7 +14,7 @@ class Cliente extends Conexion{
                                       ":p_dni"=> $p_dni,
                                       ":p_address"=> $p_address,
                                       ":p_phone"=> $p_phone));
-            return $sentencia->fetch(PDO::FETCH_ASSOC);
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (Exception $exc) {
             throw $exc;
