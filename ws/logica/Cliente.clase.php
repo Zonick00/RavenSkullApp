@@ -7,8 +7,7 @@ class Cliente extends Conexion{
     public function registrarCliente($p_name, $p_lastname, $p_dni, $p_address, $p_phone) {
         
         try {
-            $sql = "INSERT INTO public.customers(customer_name, customer_lastname, customer_dni, customer_address, customer_phone)
-                    VALUES (:p_name, :p_lastname, :p_dni, :p_address, :p_phone);";
+            $sql = "select * from f_customer_register(:p_name, :p_lastname, :p_dni, :p_address, :p_phone);";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute(array(":p_name"=> $p_name, 
                                       ":p_lastname"=> $p_lastname, 
