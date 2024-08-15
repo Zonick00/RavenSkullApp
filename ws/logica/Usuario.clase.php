@@ -48,4 +48,19 @@ class Usuario extends Conexion{
         }
     }
     
+    public function cambiarEstadoUsuario($p_state, $p_userId) {
+        try {
+            $sql = "UPDATE public.users
+                        SET user_state = :p_state
+                        WHERE userid = :p_userId";
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute(array(":p_state"=> $p_state, 
+                                      ":p_userId"=> $p_userId));
+            return $sentencia->fetch(PDO::FETCH_ASSOC);
+
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
+    
 }
