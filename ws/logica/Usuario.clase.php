@@ -66,8 +66,8 @@ class Usuario extends Conexion{
     public function cambiarPasswordUsuario($p_password, $p_userId) {
         try {
             $sql = "UPDATE public.users
-                        SET user_password = :p_password
-                        WHERE userid= md5(:p_password)";
+                        SET user_password = md5(:p_password)
+                        WHERE userid= :p_userId";
             $sentencia = $this->dblink->prepare($sql);
             $sentencia->execute(array(":p_password"=> $p_password, 
                                       ":p_userId"=> $p_userId));
