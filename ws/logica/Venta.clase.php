@@ -33,6 +33,37 @@ class Venta extends Conexion{
         }
     }
     
+    public function listarVentasPorUsuario($p_userId) {
+        try {
+            $sql = "SELECT 
+                        o.order_id, 
+                        o.order_date, 
+                        o.deliver_date, 
+                        o.shipping, 
+                        o.shipping_cost, 
+                        o.order_address, 
+                        o.net_price, 
+                        o.discount, 
+                        o.total_price, 
+                        o.order_state, 
+                        o.customer_id, 
+                        o.user_id,
+                        u.user_name ||' '|| u.user_lastname as userFullname,
+                        cu.customer_name ||' '|| cu.customer_lastname as customerFullname
+                    FROM orders o
+                    INNER JOIN users u ON o.user_id = u.userid
+                    INNER JOIN customers cu ON o.customer_id = cu.customer_id
+                    WHERE o.user_id = :p_userId
+                    ORDER BY 2 DESC";
+            $sentencia = $this->dblink->prepare($sql);
+            $sentencia->execute(array(":p_userId"=> $p_userId));
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch (Exception $exc) {
+            throw $exc;
+        }
+    }
+    
     public function buscarVenta($p_ordeId) {
         try {
             $sql = "select * from orders where order_id = :p_orderId";
